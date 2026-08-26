@@ -1,26 +1,182 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F4F4F9;
+  --foreground: #1E293B;
+  
+  --color-primary: #0056A7;
+  --color-secondary: #00B4D8;
+  --color-alert: #FF4D4D;
+  --color-text-muted: #64748B;
+  --color-panel: rgba(255, 255, 255, 0.8);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-alert: var(--color-alert);
+  --color-muted: var(--color-text-muted);
+  --color-panel: var(--color-panel);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "SF Pro Text", "SF Pro Display", "SF Pro Rounded", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Anti-Gravity Menu Styles */
+.anti-gravity-menu {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  height: 44px;
+  border-radius: 100px;
+  padding: 0 4px;
+  
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.12), inset 0px 1px 1px rgba(255, 255, 255, 1);
+}
+
+.anti-gravity-separator {
+  width: 1px;
+  height: 18px;
+  background: rgba(0, 0, 0, 0.15);
+  margin: 0 2px;
+}
+
+.anti-gravity-item {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.6px;
+  color: #1A1A1A;
+  mix-blend-mode: plus-darker;
+  position: relative;
+  z-index: 10;
+  padding: 0 16px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  border: none;
+  background: transparent;
+}
+
+.anti-gravity-item:hover {
+  opacity: 0.8;
+}
+
+.anti-gravity-indicator {
+  position: absolute;
+  height: 36px;
+  background: #FFFFFF;
+  border-radius: 100px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.05);
+  z-index: 5;
+}
+
+/* Liquid Glass Chat Input - Light Mode */
+.anti-gravity-input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  border-radius: 296px;
+  padding: 6px 6px 6px 12px;
+  gap: 6px;
+  box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.12), inset 0px 1px 2px rgba(255, 255, 255, 1);
+  
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  transition: box-shadow 0.2s;
+}
+
+.anti-gravity-input-container:focus-within {
+  box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.12), 0px 0px 0px 1.5px var(--color-primary);
+}
+
+.anti-gravity-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-weight: 510;
+  font-size: 13px;
+  color: #727272;
+  mix-blend-mode: multiply;
+  outline: none;
+  z-index: 2;
+}
+.anti-gravity-input::placeholder {
+  color: #727272;
+}
+
+/* Pull Down Menu (Map Style Selector) */
+.pull-down-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 8px 4px 12px;
+  gap: 8px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 510;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+.pull-down-button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.anti-gravity-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 140px;
+  background: rgba(245, 245, 245, 0.85);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), 0px 0px 25px rgba(0, 0, 0, 0.16);
+  border-radius: 13px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 50;
+}
+
+.anti-gravity-dropdown-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 8px;
+  gap: 8px;
+  border-radius: 8px;
+  font-weight: 510;
+  font-size: 13px;
+  color: #1A1A1A;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.anti-gravity-dropdown-item:hover, .anti-gravity-dropdown-item.active {
+  background: #0088FF;
+  color: #FFFFFF;
 }
